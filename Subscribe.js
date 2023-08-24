@@ -1,11 +1,11 @@
 function addSubscription() {
   return;
 }
-function doGet() {
+function doGetOld() {
   var template = HtmlService.createTemplate(`<!DOCTYPE html>
 <html lang="en">
   <head>
-    <base target="_top" />
+    <base target="_self" />
 
     <link
       rel="stylesheet"
