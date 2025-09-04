@@ -1,19 +1,22 @@
-var renderFile = function(file, argsObject, title) {
+var renderFile = function (file, argsObject, title) {
   try {
     if (file) {
       const tmp = HtmlService.createTemplateFromFile(file);
       if (argsObject) {
         const keys = Object.keys(argsObject);
-        keys.forEach(function(key) {
-          tmp[key] = argsObject[key]})};
+        keys.forEach(function (key) {
+          tmp[key] = argsObject[key];
+        });
+      }
 
       // tmp["list"] = htmlListArray;
       // END IF
       // Route[file] = argsObject
       // var research = geneFrame(seoSheet(coUtility()[0].rndTitle).url)
-      var funcCheck = appList()
+      var funcCheck = appList();
       var schedule = foo.dateTime(new Date());
-      var html = foo.contentApp(`<!DOCTYPE html>
+      var html = foo.contentApp(
+        `<!DOCTYPE html>
       <html lang="en">
         <head>
           <base target="_top">
@@ -286,9 +289,9 @@ var renderFile = function(file, argsObject, title) {
           <script>document.getElementById('args').addEventListener('change', <?!= argsClicked ?>)</script>
           <input type="hidden" value="<?= getUrl(ScriptApp) ?>" id="url" />
         </body>
-      </html>`, {
-        funcClicked: 
-          function() {
+      </html>`,
+        {
+          funcClicked: function () {
             //console.log(document.getElementById("test").innerHTML)
             // Init a timeout variable to be used below
             let timeout = null;
@@ -299,23 +302,31 @@ var renderFile = function(file, argsObject, title) {
               // clearTimeout(timeout);
               // Make a new timeout set to go off in 1000ms (1 second)
               // timeout = setTimeout
-              // (function  () 
+              // (function  ()
               // {console.log('Input Value:', textInput.value);}, 5000)();
               if (typeof url === "undefined") {
                 var urlData = document.getElementById("url").value;
-                var url = urlData.toString()}
+                var url = urlData.toString();
+              }
               var func = document.getElementById("func").value;
               var args = document.getElementById("args").value;
               if (typeof args !== "undefined") {
                 var linkFollow = document.createElement("a");
-                linkFollow.href = url + "?func=" + encodeURIComponent(func) + "&args=" + encodeURIComponent(args);
+                linkFollow.href =
+                  url +
+                  "?func=" +
+                  encodeURIComponent(func) +
+                  "&args=" +
+                  encodeURIComponent(args);
                 linkFollow.id = "linkFOLLOW";
                 linkFollow.target = "_top";
                 document.body.appendChild(linkFollow);
-              document.getElementById("linkFOLLOW").click()
-              document.getElementById("linkFOLLOW").remove()}})()},
-        argsClicked: 
-          function() {
+                document.getElementById("linkFOLLOW").click();
+                document.getElementById("linkFOLLOW").remove();
+              }
+            })();
+          },
+          argsClicked: function () {
             //console.log(document.getElementById("test").innerHTML)
             // Init a timeout variable to be used below
             let timeout = null;
@@ -326,43 +337,62 @@ var renderFile = function(file, argsObject, title) {
               // clearTimeout(timeout);
               // Make a new timeout set to go off in 1000ms (1 second)
               // timeout = setTimeout
-              // (function  () 
+              // (function  ()
               // {console.log('Input Value:', textInput.value);}, 5000)();
               if (typeof url === "undefined") {
                 var urlData = document.getElementById("url").value;
-                var url = urlData.toString()}
+                var url = urlData.toString();
+              }
               var func = document.getElementById("func").value;
               var args = document.getElementById("args").value;
               if (typeof func !== "undefined") {
-              var linkFollow = document.createElement("a");
-              linkFollow.href = url + "?func=" + encodeURIComponent(func) + "&args=" + encodeURIComponent(args);
-              linkFollow.id = "linkFOLLOW";
-              linkFollow.target = "_top";
-              document.body.appendChild(linkFollow);
-            document.getElementById("linkFOLLOW").click()
-            document.getElementById("linkFOLLOW").click()}})()},})
-        return tmp.evaluate()
+                var linkFollow = document.createElement("a");
+                linkFollow.href =
+                  url +
+                  "?func=" +
+                  encodeURIComponent(func) +
+                  "&args=" +
+                  encodeURIComponent(args);
+                linkFollow.id = "linkFOLLOW";
+                linkFollow.target = "_top";
+                document.body.appendChild(linkFollow);
+                document.getElementById("linkFOLLOW").click();
+                document.getElementById("linkFOLLOW").click();
+              }
+            })();
+          },
+        },
+      );
+      return tmp
+        .evaluate()
         .append(html)
         .append(schedule)
         .setSandboxMode(HtmlService.SandboxMode.IFRAME)
         .setXFrameOptionsMode(HtmlService.XFrameOptionsMode.ALLOWALL)
-        .setTitle(title)}
-    else{
-      return foo.handleRequest(argsObject)}}
-  catch (error) {
+        .setTitle(title);
+    } else {
+      return foo.handleRequest(argsObject);
+    }
+  } catch (error) {
     console.log("error in renderTemplate: " + error);
-    return "Error rendering template."}}
+    return "Error rendering template.";
+  }
+};
 
-var renderTemplate = function(blob, argsObject, title) {
+var renderTemplate = function (blob, argsObject, title) {
   try {
     const tmp = HtmlService.createTemplate(blob);
     if (argsObject) {
       const keys = Object.keys(argsObject);
-      keys.forEach(function(key) {tmp[key] = argsObject[key]})}
-    var funcCheck = appList()
+      keys.forEach(function (key) {
+        tmp[key] = argsObject[key];
+      });
+    }
+    var funcCheck = appList();
     var schedule = foo.dateTime(new Date());
     // var research = geneFrame(seoSheet(coUtility()[0].rndTitle).url)
-    var html = foo.contentApp(`
+    var html = foo.contentApp(
+      `
     <html id="renderTemplate">
       <head>
         <base target="_top">
@@ -637,9 +667,9 @@ var renderTemplate = function(blob, argsObject, title) {
         <script>document.getElementById('args').addEventListener('change', <?!= argsClicked ?>)</script>
         <input type="hidden" value="<?= getUrl(ScriptApp) ?>" id="url" />
       </body>
-    </html>`, {
-      funcClicked: 
-        function() {
+    </html>`,
+      {
+        funcClicked: function () {
           //console.log(document.getElementById("test").innerHTML)
           // Init a timeout variable to be used below
           let timeout = null;
@@ -650,23 +680,31 @@ var renderTemplate = function(blob, argsObject, title) {
             // clearTimeout(timeout);
             // Make a new timeout set to go off in 1000ms (1 second)
             // timeout = setTimeout
-            // (function  () 
+            // (function  ()
             // {console.log('Input Value:', textInput.value);}, 5000)();
             if (typeof url === "undefined") {
               var urlData = document.getElementById("url").value;
-              var url = urlData.toString()}
+              var url = urlData.toString();
+            }
             var func = document.getElementById("func").value;
             var args = document.getElementById("args").value;
             if (typeof args !== "undefined") {
               var linkFollow = document.createElement("a");
-              linkFollow.href = url + "?func=" + encodeURIComponent(func) + "&args=" + encodeURIComponent(args);
+              linkFollow.href =
+                url +
+                "?func=" +
+                encodeURIComponent(func) +
+                "&args=" +
+                encodeURIComponent(args);
               linkFollow.id = "linkFOLLOW";
               linkFollow.target = "_top";
               document.body.appendChild(linkFollow);
-            document.getElementById("linkFOLLOW").click()
-            document.getElementById("linkFOLLOW").remove()}})()},
-      argsClicked: 
-        function() {
+              document.getElementById("linkFOLLOW").click();
+              document.getElementById("linkFOLLOW").remove();
+            }
+          })();
+        },
+        argsClicked: function () {
           //console.log(document.getElementById("test").innerHTML)
           // Init a timeout variable to be used below
           let timeout = null;
@@ -677,32 +715,46 @@ var renderTemplate = function(blob, argsObject, title) {
             // clearTimeout(timeout);
             // Make a new timeout set to go off in 1000ms (1 second)
             // timeout = setTimeout
-            // (function  () 
+            // (function  ()
             // {console.log('Input Value:', textInput.value);}, 5000)();
             if (typeof url === "undefined") {
               var urlData = document.getElementById("url").value;
-              var url = urlData.toString()}
+              var url = urlData.toString();
+            }
             var func = document.getElementById("func").value;
             var args = document.getElementById("args").value;
             if (typeof func !== "undefined") {
-            var linkFollow = document.createElement("a");
-            linkFollow.href = url + "?func=" + encodeURIComponent(func) + "&args=" + encodeURIComponent(args);
-            linkFollow.id = "linkFOLLOW";
-            linkFollow.target = "_top";
-            document.body.appendChild(linkFollow);
-          document.getElementById("linkFOLLOW").click()
-          document.getElementById("linkFOLLOW").click()}})()},})
-    return tmp.evaluate()
+              var linkFollow = document.createElement("a");
+              linkFollow.href =
+                url +
+                "?func=" +
+                encodeURIComponent(func) +
+                "&args=" +
+                encodeURIComponent(args);
+              linkFollow.id = "linkFOLLOW";
+              linkFollow.target = "_top";
+              document.body.appendChild(linkFollow);
+              document.getElementById("linkFOLLOW").click();
+              document.getElementById("linkFOLLOW").click();
+            }
+          })();
+        },
+      },
+    );
+    return tmp
+      .evaluate()
       .append(html)
       .append(schedule)
       .setSandboxMode(HtmlService.SandboxMode.IFRAME)
       .setXFrameOptionsMode(HtmlService.XFrameOptionsMode.ALLOWALL)
-      .setTitle(title)}
-  catch (error) {
+      .setTitle(title);
+  } catch (error) {
     console.log("error in renderTemplate: " + error);
-    return "Error rendering template."}}; // or throw error.
+    return "Error rendering template.";
+  }
+}; // or throw error.
 
-var appList = function(e) {
+var appList = function (e) {
   return HtmlService.createTemplate(
     `
   <html id="appList">
@@ -906,37 +958,40 @@ var appList = function(e) {
       </script>
     </body>
   </html>
-  `).evaluate().getContent()}
-      // <div class="row">
-      //   <nav class="col s10 push-s1 push-m1 push-l1 menu z-depth-5 card-panel amber scale-out scale-in" style="font-size: 30px">
-      //     <div class="container">
-      //       <div class="col s12 receipt nav-wrapper deep-purple darken-1">
-      //           <a href="#" onclick="aboutMeSearch()" target="_self" id="aboutme">About-Me</a><br />
-      //           <a href="#" onclick="shopResearch()" id="shopstore">Store</a><br />
-      //           <a href="#" onclick="secResearch()" id="secenv">Local Enviroment</a><br />
-      //           <a href="#" onclick="calcResearch()" id="calculate">Calculate</a><br />
-      //           <a href="#" onclick="investResearch()" id="invest">Investors</a><br />
-      //           <a href="#" onclick="newResearch()" id="rndnew">New</a><br />
-      //       </div></div>
-      //     </nav>
-      // </div>
-    // <div class="row">
-    //   <div class="col s10 card-panel amber push-s1 push-m1 push-l1">
-    //     <div class="container">
-    //       <div class="col s12 receipt deep-purple darken-1">
-    //         <div id="dlts"></div>
-    //       </div>
-    //     </div>
-    //   </div>
-    // </div>
-    // <div class="row">
-    //   <div class="col s10 card-panel amber push-s1 push-m1 push-l1">
-    //     <div class="container">
-    //       <div class="col s12 receipt deep-purple darken-1">
-    //         <label for="appList" class="active" style="font-size: 16px; top: -5px; left: -4px;">Choose your function...</label>
-    //           <select id="appList" class="browser-default deep-purple darken-1"></select>
-    //       </div>
-    //     </div>
-    //   </div>
-    // </div>
-
+  `,
+  )
+    .evaluate()
+    .getContent();
+};
+// <div class="row">
+//   <nav class="col s10 push-s1 push-m1 push-l1 menu z-depth-5 card-panel amber scale-out scale-in" style="font-size: 30px">
+//     <div class="container">
+//       <div class="col s12 receipt nav-wrapper deep-purple darken-1">
+//           <a href="#" onclick="aboutMeSearch()" target="_self" id="aboutme">About-Me</a><br />
+//           <a href="#" onclick="shopResearch()" id="shopstore">Store</a><br />
+//           <a href="#" onclick="secResearch()" id="secenv">Local Enviroment</a><br />
+//           <a href="#" onclick="calcResearch()" id="calculate">Calculate</a><br />
+//           <a href="#" onclick="investResearch()" id="invest">Investors</a><br />
+//           <a href="#" onclick="newResearch()" id="rndnew">New</a><br />
+//       </div></div>
+//     </nav>
+// </div>
+// <div class="row">
+//   <div class="col s10 card-panel amber push-s1 push-m1 push-l1">
+//     <div class="container">
+//       <div class="col s12 receipt deep-purple darken-1">
+//         <div id="dlts"></div>
+//       </div>
+//     </div>
+//   </div>
+// </div>
+// <div class="row">
+//   <div class="col s10 card-panel amber push-s1 push-m1 push-l1">
+//     <div class="container">
+//       <div class="col s12 receipt deep-purple darken-1">
+//         <label for="appList" class="active" style="font-size: 16px; top: -5px; left: -4px;">Choose your function...</label>
+//           <select id="appList" class="browser-default deep-purple darken-1"></select>
+//       </div>
+//     </div>
+//   </div>
+// </div>

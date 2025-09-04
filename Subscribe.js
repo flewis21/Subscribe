@@ -1,6 +1,8 @@
-function addSubscription(){return}
+function addSubscription() {
+  return;
+}
 function doGetOld() {
-var template = HtmlService.createTemplate(`<!DOCTYPE html>
+  var template = HtmlService.createTemplate(`<!DOCTYPE html>
 <html lang="en">
   <head>
     <base target="_self" />
@@ -58,7 +60,7 @@ var template = HtmlService.createTemplate(`<!DOCTYPE html>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   </body>
 </html>`);
-template.style = `<style>
+  template.style = `<style>
   body {
     background-color: red;
     border: 2px solid powderblue;
@@ -80,12 +82,16 @@ template.style = `<style>
 
   }
 
-</style>`
-  return template.evaluate().setXFrameOptionsMode(HtmlService.XFrameOptionsMode.ALLOWALL);}
+</style>`;
+  return template
+    .evaluate()
+    .setXFrameOptionsMode(HtmlService.XFrameOptionsMode.ALLOWALL);
+}
 // Creates an import or include function so files can be added
 // inside the main index.html
 function include(file) {
-  HtmlService.createHtmlOutputFromFile(file).getContent();}
+  HtmlService.createHtmlOutputFromFile(file).getContent();
+}
 // A template which evaluates to whatever is bound to 'foo'.
 // var template = HtmlService.createTemplateFromFile('index');
 //    HtmlService.createHtmlOutputFromFile('index')

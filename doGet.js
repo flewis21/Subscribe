@@ -1,26 +1,53 @@
-var doGet = function(e) {
+var doGet = function (e) {
   var libName = "foo";
-  e? e:e = this[libName].objectOfS(["parameter"],[[["func", arguments.callee.name]]], Math.floor((this[libName].maxTime - new Date() % (1000 * 60)) / 1000))
-  console.log(Math.floor((this[libName].maxTime - new Date() % (1000 * 60)) / 1000) + "\n" + arguments.callee.name + "\n!" + e.parameter["func"] + ", = " + !e.parameter["func"])
+  e
+    ? e
+    : (e = this[libName].objectOfS(
+        ["parameter"],
+        [[["func", arguments.callee.name]]],
+        Math.floor((this[libName].maxTime - (new Date() % (1000 * 60))) / 1000),
+      ));
+  console.log(
+    Math.floor((this[libName].maxTime - (new Date() % (1000 * 60))) / 1000) +
+      "\n" +
+      arguments.callee.name +
+      "\n!" +
+      e.parameter["func"] +
+      ", = " +
+      !e.parameter["func"],
+  );
   var titleArray = [];
   for (var key in globalThis) {
     if (typeof globalThis[key] == "function") {
-      titleArray.push(key)}};
+      titleArray.push(key);
+    }
+  }
   var objMaster = {
     miscellaneous: {
-    section: titleArray}}
-  var fx = e.parameter["func"]
+      section: titleArray,
+    },
+  };
+  var fx = e.parameter["func"];
   if (fx === objMaster.miscellaneous.section[0]) {
-    return this[libName].handleRequest(e)}
-  else if (fx === "oldSEC") {
-    var rndTitle = e.parameter["args"]
-    return renderTemplate(this[libName].oldSEC(rndTitle),{},"Securities and Exchange Commission")}
-  else if (fx === objMaster.miscellaneous.section[5]) {
-    return this[libName].handleRequest(e)}
-  else {
+    return this[libName].handleRequest(e);
+  } else if (fx === "oldSEC") {
+    var rndTitle = e.parameter["args"];
+    return renderTemplate(
+      this[libName].oldSEC(rndTitle),
+      {},
+      "Securities and Exchange Commission",
+    );
+  } else if (fx === objMaster.miscellaneous.section[5]) {
+    return this[libName].handleRequest(e);
+  } else {
     var foobarr = "renderFile";
-    var htmlArray = [`index proMedia epaWebsite callBack oddChances jsGame checkOnDay uiAccess popUpOpen congressLeg congressMembers jFundamentals gnuFree myGNUFreeJS Section3.Challenge1 cors edgarFriendly editor ssForms styling theRoll theWorks uiAccess`].toString().split(" ")
-    var args = htmlArray[Math.floor(Math.random() * (Math.floor(htmlArray.length)))]
+    var htmlArray = [
+      `index proMedia epaWebsite callBack oddChances jsGame checkOnDay uiAccess popUpOpen congressLeg congressMembers jFundamentals gnuFree myGNUFreeJS Section3.Challenge1 cors edgarFriendly editor ssForms styling theRoll theWorks uiAccess`,
+    ]
+      .toString()
+      .split(" ");
+    var args =
+      htmlArray[Math.floor(Math.random() * Math.floor(htmlArray.length))];
     var template = HtmlService.createTemplate(`<!DOCTYPE html>
     <html lang="en">
       <head>
@@ -101,10 +128,10 @@ var doGet = function(e) {
 
       }
 
-    </style>`
+    </style>`;
     if (this[libName].renderFile(args)) {
-    return renderTemplate(
-              `<html id="SubscribeDoGet">
+      return renderTemplate(
+        `<html id="SubscribeDoGet">
                 <head>
                   <base target="_self">
                   <meta charset="utf-8">
@@ -142,11 +169,10 @@ var doGet = function(e) {
                         document.getElementById("pageObj").innerHTML = <?!= JSON.stringify(e) ?>
                       } 
                   </script>
-              </html>`, 
-              {
-                renBlob: this[libName]
-                .contentApp(
-                        `          
+              </html>`,
+        {
+          renBlob: this[libName].contentApp(
+            `          
       <html id="Subscribe">
         <head>
           <base target="_self">
@@ -200,14 +226,14 @@ var doGet = function(e) {
           </script>
         </body>
       </html>
-      `, 
-                        {
-                          appL: this[libName][foobarr].apply(this, ["myGNUFreeJS"])
-                        }),
-                      
-                subBlob: this[libName]
-                .contentApp(
-                        `
+      `,
+            {
+              appL: this[libName][foobarr].apply(this, ["myGNUFreeJS"]),
+            },
+          ),
+
+          subBlob: this[libName].contentApp(
+            `
                     <html id="Subscribe">
                       <head>
                         <base target="_self">
@@ -235,27 +261,33 @@ var doGet = function(e) {
                         <?!= subL ?>
                       </body>
                     </html>
-                        `, 
-                        {
-                          subL: template.evaluate().getContent()
-                        }),
-                      
-                e:JSON.stringify(e)
-              }, e.parameter["func"] || "myGNUFreeJS")} 
-    else {
-      return this[libName].handleRequest(e)}}
-}
+                        `,
+            {
+              subL: template.evaluate().getContent(),
+            },
+          ),
 
-var runBoilerplate =  function(func, args)  {
-    var libName = "foo";
-    var libFunc = func || "doGet";
-    args = args || [];
-    return this[libName][libFunc].apply(this, args);}
+          e: JSON.stringify(e),
+        },
+        e.parameter["func"] || "myGNUFreeJS",
+      );
+    } else {
+      return this[libName].handleRequest(e);
+    }
+  }
+};
 
-var runAll =  function(func, args)
-  {var arr = func.split(".");
+var runBoilerplate = function (func, args) {
+  var libName = "foo";
+  var libFunc = func || "doGet";
+  args = args || [];
+  return this[libName][libFunc].apply(this, args);
+};
+
+var runAll = function (func, args) {
+  var arr = func.split(".");
   var libName = arr[0];
   var libFunc = arr[1];
   args = args || [];
-  return this[libName][libFunc].apply(this, args);}
-
+  return this[libName][libFunc].apply(this, args);
+};
